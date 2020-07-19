@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% if title %}
+    <title>To Do List- {{title}}</title>
+    {% else %}
+    <title>To Do List</title>
+    {% endif %}
+  </head>
+  <body>
+    {% block content %}
+    {% endblock content %}
+  </body>
+</html>

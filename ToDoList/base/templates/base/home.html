@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Hello World</title>
-  </head>
-  <body>
-    Hello World
-  </body>
-</html>
+{% extends 'base/base.html' %}
+{% block content %}
+    {% for i in toDos %} 
+    {{i.id}}. {{i.content}}
+    Date Added : {{i.dateAdded}} 
+    Deadline :{{i.deadline}}
+    <br> 
+    {% endfor %}
+{% endblock content %}
