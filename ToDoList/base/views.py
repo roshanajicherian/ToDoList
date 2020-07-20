@@ -1,26 +1,9 @@
 from django.shortcuts import render
-
-# Create your views here.
-
-sampleToDos = [
-    {
-        'id': 1,
-        'content': 'Study DP',
-        'dateAdded': '24th August 2020',
-        'deadline': '30th August 2020'
-    },
-    {
-        'id': 2,
-        'content': 'Study Binary Seach',
-        'dateAdded': '15th August 2020',
-        'deadline': '23th August 2020'
-    }
-]
-
+from .models import toDoPost
 
 def Home(request):
     context = {
-        'toDos': sampleToDos,
+        'toDos': toDoPost.objects.all(),
         'title': 'Home'
     }
     return render(request, 'base/home.html', context)

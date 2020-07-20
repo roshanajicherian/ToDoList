@@ -1,10 +1,10 @@
-{% extends 'base/base.html' %}
-{% block content %}
-    {% for i in toDos %} 
+{% extends 'base/base.html' %} 
+{% block content %} 
+{% for i in toDos %}
     <div class="row toDo">
-    {{i.id}}. {{i.content}}
-    Date Added : {{i.dateAdded}} 
-    Deadline :{{i.deadline}}
+    {{i.id}}. {{i.content}} 
+    Date Added : {{i.datePosted|date:"D, F d, Y" }}
+    Deadline :{{i.deadline|date:"D, F d, Y"}}
     </div>
-    {% endfor %}
+{% endfor %} 
 {% endblock content %}
