@@ -1,6 +1,6 @@
-from django.shortcuts import render,redirect
-from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
 from .forms import UserRegisterForm
+from django.contrib import messages
 
 
 def register(request):
@@ -8,7 +8,7 @@ def register(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('todo-home')
+            return redirect('todo-login')
     else:
         form = UserRegisterForm()
     context = {
@@ -16,3 +16,13 @@ def register(request):
         'title': 'Register'
     }
     return render(request, 'users/register.html', context)
+
+
+def login(request):
+    context = {'title': 'Login'}
+    return render(request, 'users/login.html', context)
+
+
+def logout(request):
+    context = {'title': 'Logout'}
+    return render(request, 'users/logout.html', context)

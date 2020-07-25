@@ -33,10 +33,9 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto navbar-right-top">
             <li>
-              <a
-                class="btn btn-primary addbutton"
-                href="{% url 'todo-add'%}"
-              >Add</a>
+              <a class="btn btn-primary addbutton" href="{% url 'todo-add'%}"
+                >Add</a
+              >
             </li>
             <li class="nav-item dropdown nav-user">
               <a
@@ -59,16 +58,11 @@
                   <h5 class="mb-0 text-white nav-user-name">
                     {{user.username}}
                   </h5>
-                  <span class="status"></span
-                  ><span class="ml-2">Available</span>
                 </div>
                 <a class="dropdown-item" href="#"
                   ><i class="fas fa-user mr-2"></i>Account</a
                 >
-                <a class="dropdown-item" href="#"
-                  ><i class="fas fa-cog mr-2"></i>Setting</a
-                >
-                <a class="dropdown-item" href="#"
+                <a class="dropdown-item" href="{% url 'todo-logout'%}"
                   ><i class="fas fa-power-off mr-2"></i>Logout</a
                 >
               </div>

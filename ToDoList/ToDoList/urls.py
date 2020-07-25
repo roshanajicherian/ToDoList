@@ -16,11 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import include
-from users import views
-from base import views as todoViews
+from users import views as userViews
+from base import views as baseViews
+from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('base.urls')),
-    path('register/', views.register, name="user-register"),
-    path('addPost/', todoViews.addPost, name="todo-add")
+    path('register/', userViews.register, name="user-register"),
+    path('addPost/', baseViews.addPost, name="todo-add"),
+    path('login/', auth_views.LoginView.as_view(template_name='users/login.html'),
+         name="todo-login"),
+    path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'),
+         name="todo-logout")
 ]
