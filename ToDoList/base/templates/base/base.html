@@ -2,37 +2,98 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  <link rel="stylesheet" href="{% static 'base/base.css' %}">  
-  {% if title %}
-      <title>To Do List- {{title}}</title>
-  {% else %}
-      <title>To Do List</title>
-  {% endif %}
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{% static 'base/base.css' %}" />
+    {% if title %}
+    <title>To Do List- {{title}}</title>
+    {% else %}
+    <title>To Do List</title>
+    {% endif %}
   </head>
   <body>
     <div class="dashboard-header">
-    <nav class="navbar navbar-expand-lg bg-white fixed-top"> <a class="navbar-brand" href="#">TO DO LIST</a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
-        <div class="collapse navbar-collapse " id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto navbar-right-top">
-            <li class="btn btn-primary addbutton" href="#">Add</li>
-                <li class="nav-item dropdown nav-user"> <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="https://img.icons8.com/dusk/100/000000/user-female-circle.png" alt="" class="user-avatar-md rounded-circle"></a>
-                    <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
-                        <div class="nav-user-info">
-                            <h5 class="mb-0 text-white nav-user-name">Tikoha Samga</h5> <span class="status"></span><span class="ml-2">Available</span>
-                        </div> <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a> <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a> <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Logout</a>
-                    </div>
-                </li>
-            </ul>
+      <nav class="navbar navbar-expand-lg bg-white fixed-top">
+        <a class="navbar-brand" href="#">TO DO LIST</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto navbar-right-top">
+            <li>
+              <a
+                class="btn btn-primary addbutton"
+                href="{% url 'todo-add'%}"
+              >Add</a>
+            </li>
+            <li class="nav-item dropdown nav-user">
+              <a
+                class="nav-link nav-user-img"
+                href="#"
+                id="navbarDropdownMenuLink2"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                ><img
+                  src="https://img.icons8.com/dusk/100/000000/user-female-circle.png"
+                  alt=""
+                  class="user-avatar-md rounded-circle"
+              /></a>
+              <div
+                class="dropdown-menu dropdown-menu-right nav-user-dropdown"
+                aria-labelledby="navbarDropdownMenuLink2"
+              >
+                <div class="nav-user-info">
+                  <h5 class="mb-0 text-white nav-user-name">
+                    {{user.username}}
+                  </h5>
+                  <span class="status"></span
+                  ><span class="ml-2">Available</span>
+                </div>
+                <a class="dropdown-item" href="#"
+                  ><i class="fas fa-user mr-2"></i>Account</a
+                >
+                <a class="dropdown-item" href="#"
+                  ><i class="fas fa-cog mr-2"></i>Setting</a
+                >
+                <a class="dropdown-item" href="#"
+                  ><i class="fas fa-power-off mr-2"></i>Logout</a
+                >
+              </div>
+            </li>
+          </ul>
         </div>
-    </nav>
-</div>
-<div class="toDo">
-    {% block content %}
-    {% endblock content %}
-</div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+      </nav>
+    </div>
+    <div class="toDo">
+      {% block content %} {% endblock content %}
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

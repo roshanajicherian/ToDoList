@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include
 from users import views
+from base import views as todoViews
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('base.urls')),
-    path('register/', views.register, name="user-register")
+    path('register/', views.register, name="user-register"),
+    path('addPost/', todoViews.addPost, name="todo-add")
 ]
