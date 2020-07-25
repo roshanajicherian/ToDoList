@@ -1,16 +1,19 @@
 from django.shortcuts import render, redirect
 from .models import toDoPost
 from .forms import PostForm
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def Home(request):
     context = {
-        'toDos': toDoPost.objects.all(),
+        'toDos': toDoPost.objects.filter(author=request.user),
         'title': 'Home'
     }
     return render(request, 'base/home.html', context)
 
 
+@login_required
 def addPost(request):
     form = PostForm()
     if request.method == 'POST':
