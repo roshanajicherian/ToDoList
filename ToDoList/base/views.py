@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from .models import toDoPost
 from .forms import PostForm
 from django.contrib.auth.decorators import login_required
-from django.views.generic import UpdateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+
 
 @login_required
 def Home(request):
@@ -27,8 +28,32 @@ def addPost(request):
     context = {'form': form, 'title': 'Add'}
     return render(request, 'base/addPost.html', context)
 
-class editToDo(LoginRequiredMixin,UpdateView):
-    model=toDoPost
-    fields=['content','deadline']
-    template_name='base/addPost.html'
-    context_object_name='toDo'
+
+class editToDo(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = toDoPost
+    fields = ['content', 'deadline']
+    template_name = 'base/addPost.html'
+    context_object_name = 'toDo'
+
+    def is_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        todo = self.get_object()
+        if self.request.user == todo.author:
+            return True
+        return False
+
+
+class deleteToDo(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = toDoPost
+    template_name = 'base/delete_todo.html'
+    context_object_name = 'toDo'
+    success_url = '/'
+
+    def test_func(self):
+        todo = self.get_object()
+        if self.request.user == todo.author:
+            return True
+        return False

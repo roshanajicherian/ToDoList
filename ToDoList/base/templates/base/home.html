@@ -1,11 +1,8 @@
-{% extends 'base/base.html' %} 
-{% block content %} 
-{% for i in toDos %}
-    <div class="row toDo">
-    {{i.id}}. {{i.content}} 
-    Date Added : {{i.datePosted|date:"D, F d, Y" }}
-    Deadline :{{i.deadline|date:"D, F d, Y"}}
-    <a class="btn btn-info" href="{% url 'todo-update' i.id%}">Update</a>
-    </div>
-{% endfor %} 
-{% endblock content %}
+{% extends 'base/base.html' %} {% block content %} {% for i in toDos %}
+<div class="row toDo">
+  {{i.id}}. {{i.content}} Date Added : {{i.datePosted|date:"D, F d, Y" }}
+  Deadline :{{i.deadline|date:"D, F d, Y"}}
+  <a class="btn btn-info" href="{% url 'todo-update' i.id%}">Update</a>
+  <a class="btn btn-danger" href="{% url 'todo-delete' i.id%}">Delete</a>
+</div>
+{% endfor %} {% endblock content %}
