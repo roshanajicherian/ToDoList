@@ -3,5 +3,6 @@ from django.urls import path
 from django.urls import include
 from . import views
 urlpatterns = [
-    path('', views.Home, name="todo-home")
+    path('', views.Home, name="todo-home"),
+    path('<int:pk>/update', views.editToDo.as_view(), name='todo-update')
 ]

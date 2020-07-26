@@ -5,6 +5,7 @@
     {{i.id}}. {{i.content}} 
     Date Added : {{i.datePosted|date:"D, F d, Y" }}
     Deadline :{{i.deadline|date:"D, F d, Y"}}
+    <a class="btn btn-info" href="{% url 'todo-update' i.id%}">Update</a>
     </div>
 {% endfor %} 
 {% endblock content %}
